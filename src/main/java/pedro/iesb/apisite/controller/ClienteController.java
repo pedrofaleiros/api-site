@@ -1,5 +1,6 @@
 package pedro.iesb.apisite.controller;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,8 +33,23 @@ public class ClienteController {
     }
 
     @GetMapping("/cliente")
-    public List<ClienteDTO> mostra(){
+    public List<ClienteDTO> getClientes(){
         return service.getClientes();
+    }
+
+    @PostMapping("cliente/login")
+    public ResponseEntity<String> loginCliente(@RequestBody ClienteDTO cliente){
+
+        String id = service.login(cliente);
+
+        if(id == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.add("Authorization", id);
+
+        return ResponseEntity.ok().headers(responseHeader).build();
     }
 
 }

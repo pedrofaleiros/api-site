@@ -4,7 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pedro.iesb.apisite.dto.ProdutoDTO;
 import pedro.iesb.apisite.service.imp.ProdutoService;
-
 import java.util.List;
 
 @RestController

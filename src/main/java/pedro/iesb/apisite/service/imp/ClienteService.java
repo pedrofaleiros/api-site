@@ -45,6 +45,6 @@ public class ClienteService implements ClienteServiceInterface{
 
     @Override
     public String login(ClienteDTO cliente){
-        return null;
+        return repository.login(cliente.getName(), cliente.getPassword());
     }
 }
