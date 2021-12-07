@@ -8,6 +8,7 @@ public class ProdutoDTOBuilder {
     private String description;
     private float price;
     private int qtd;
+    private String section;
 
     public ProdutoDTOBuilder withName(String name){
         this.name = name;
@@ -29,7 +30,12 @@ public class ProdutoDTOBuilder {
         return this;
     }
 
+    public ProdutoDTOBuilder withSection(String section){
+        this.section = section;
+        return this;
+    }
+
     public ProdutoDTO build(){
-        return new ProdutoDTO( name, description, price, qtd);
+        return new ProdutoDTO( name, description, price, qtd, section);
     }
 }

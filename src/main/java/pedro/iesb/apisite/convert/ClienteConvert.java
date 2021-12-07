@@ -45,6 +45,7 @@ public class ClienteConvert {
         List<ClienteDTO> clienteDTOs = new ArrayList<>();
 
         for(ClienteEntity c:clientes){
+            c.setPassword(null);
             clienteDTOs.add(getDTO(c));
         }
 

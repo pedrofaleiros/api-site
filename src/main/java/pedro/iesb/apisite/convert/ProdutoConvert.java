@@ -16,6 +16,7 @@ public class ProdutoConvert {
                 .withDescription(prod.getDescription())
                 .withPrice(prod.getPrice())
                 .withQtd(prod.getQtd())
+                .withSection(prod.getSection())
                 .build();
     }
 
@@ -24,14 +25,19 @@ public class ProdutoConvert {
         List<ProdutoDTO> prodDTOs = new ArrayList<>();
 
         for(ProdutoEntity p: prods){
-            prodDTOs.add(new ProdutoDTOBuilder()
-                    .withDescription(p.getDescription())
-                    .withName(p.getName())
-                    .withPrice(p.getPrice())
-                    .withQtd(p.getQtd())
-                    .build());
+            prodDTOs.add(getDTO(p));
         }
 
         return prodDTOs;
+    }
+
+    public ProdutoDTO getDTO(ProdutoEntity prod){
+        return new ProdutoDTOBuilder()
+                .withName(prod.getName())
+                .withQtd(prod.getQtd())
+                .withSection(prod.getSection())
+                .withPrice(prod.getPrice())
+                .withDescription(prod.getDescription())
+                .build();
     }
 }

@@ -27,6 +27,10 @@ public class ClienteService implements ClienteServiceInterface{
     @Override
     public String cadastrar(ClienteDTO cliente){
 
+        if(repository.findByName(cliente.getName())){
+            return "Usuario ja existe";
+        }
+
         String ret = validation.verify(cliente);
 
         if(ret == null){

@@ -51,4 +51,15 @@ public class ProdutoRepository {
         }
         return false;
     }
+
+    public float priceOf(String name){
+
+        for(ProdutoEntity p: produtos){
+            if(p.getName().equals(name)){
+                return p.getPrice();
+            }
+        }
+
+        return 0;
+    }
 }

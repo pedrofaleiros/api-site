@@ -7,15 +7,17 @@ import java.util.List;
 
 public interface CarrinhoServiceInterface {
 
-    String adicionarProduto(ItemCarrinhoDTO item);
+    String adicionarProduto(ItemCarrinhoDTO item);// adiciona e altera
+
+    boolean deleta(String prod);
+
+    float valorTotal();
+
+    float valorDesconto(String desconto);
 
     List<ItemCarrinhoDTO> getProdutos();
 
-    String atualizar(ProdutoDTO prod, String name);
-
-    boolean deleta(ProdutoDTO prod);
-
-    boolean limparCarrinho();
+    void limparCarrinho();
 }
 
 /*

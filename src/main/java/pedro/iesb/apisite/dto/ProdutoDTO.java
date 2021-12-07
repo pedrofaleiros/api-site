@@ -6,15 +6,17 @@ public class ProdutoDTO {
     private String description;
     private float price;
     private int qtd;
+    private String section;
 
     public ProdutoDTO() {
     }
 
-    public ProdutoDTO(String name, String description, float price, int qtd) {
+    public ProdutoDTO(String name, String description, float price, int qtd, String section) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.qtd = qtd;
+        this.section = section;
     }
 
     public String getName() {
@@ -47,5 +49,13 @@ public class ProdutoDTO {
 
     public void setQtd(int qtd) {
         this.qtd = qtd;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
     }
 }

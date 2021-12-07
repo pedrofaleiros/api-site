@@ -6,17 +6,20 @@ public class ProdutoEntity extends AbstractEntity {
     private float price;
     private int qtd;
     private int sold;
+    private String section;
 
     public ProdutoEntity(){
     }
 
-    public ProdutoEntity(String id, String name, String description, float price, int qtd, int sold) {
+    public ProdutoEntity(String id, String name, String description,
+                         float price, int qtd, int sold, String section) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.qtd = qtd;
         this.sold = sold;
+        this.section = section;
     }
 
     public String getDescription() {
@@ -49,5 +52,13 @@ public class ProdutoEntity extends AbstractEntity {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
     }
 }

@@ -29,4 +29,13 @@ public class ClienteRepository {
         }
         return null;
     }
+
+    public boolean findByName(String name){
+        for(ClienteEntity c: clientes){
+            if(c.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

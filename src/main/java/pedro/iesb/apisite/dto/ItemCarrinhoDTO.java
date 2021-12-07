@@ -2,20 +2,20 @@ package pedro.iesb.apisite.dto;
 
 public class ItemCarrinhoDTO {
 
-    private ProdutoDTO produto;
+    private String nomeProduto;
     private int qtd;
 
-    public ItemCarrinhoDTO(ProdutoDTO produto, int qtd) {
-        this.produto = produto;
+    public ItemCarrinhoDTO(String nomeProduto, int qtd) {
+        this.nomeProduto = nomeProduto;
         this.qtd = qtd;
     }
 
-    public ProdutoDTO getProduto() {
-        return produto;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setProduto(ProdutoDTO produto) {
-        this.produto = produto;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
     public int getQtd() {
