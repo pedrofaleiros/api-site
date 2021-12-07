@@ -25,6 +25,18 @@ public class CarrinhoController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/carrinho/update")
+    public ResponseEntity<String> atualizaCarrinho(@RequestBody ItemCarrinhoDTO item){
+
+        String ret = service.adicionarProduto(item);
+
+        if(ret != null){
+            return ResponseEntity.badRequest().body(ret);
+        }
+
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/carrinho")
     public List<ItemCarrinhoDTO> getCarrinho(){
         return service.getProdutos();
