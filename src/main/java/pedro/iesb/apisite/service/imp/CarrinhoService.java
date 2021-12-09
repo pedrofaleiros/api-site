@@ -2,6 +2,7 @@ package pedro.iesb.apisite.service.imp;
 
 import org.springframework.stereotype.Service;
 import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 import pedro.iesb.apisite.repository.CarrinhoRepository;
 import pedro.iesb.apisite.service.CarrinhoServiceInterface;
 import java.util.List;
@@ -50,24 +51,13 @@ public class CarrinhoService implements CarrinhoServiceInterface {
     }
 
     @Override
-    public float valorDesconto(String str){
+    public float valorDesconto(String cupom){
 
-        float desconto = 1;
-        try{
-            desconto = Float.parseFloat(str);
-        }catch (IllegalArgumentException NumberFormatException){
-            return -1;
-        }
-
-        if (desconto > 1 || desconto < 0){
-            return -1;
-        }
-
-        return repository.valorCarrinho() * desconto;
+        return repository.valorCarrinhoCupom(cupom);
     }
 
     @Override
-    public List<ItemCarrinho> getProdutos(){
+    public List<ItemCarrinhoResponse> getProdutos(){
         return repository.getCarrinho();
     }
 

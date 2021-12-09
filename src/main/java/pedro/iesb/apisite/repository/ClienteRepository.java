@@ -1,5 +1,6 @@
 package pedro.iesb.apisite.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pedro.iesb.apisite.model.entities.ClienteEntity;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class ClienteRepository {
         for(ClienteEntity c: clientes){
             if(c.getName().equals(name)){
                 if(c.getPassword().equals(password)){
+                    LoginRepository login = LoginRepository.getInstancia();
+                    login.setLogin(c.getId());
                     return c.getId();
                 }
                 return null;

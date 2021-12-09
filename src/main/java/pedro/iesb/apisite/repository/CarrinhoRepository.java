@@ -1,7 +1,11 @@
 package pedro.iesb.apisite.repository;
 
 import org.springframework.stereotype.Repository;
+import pedro.iesb.apisite.builder.ItemCarrinhoResponseBuilder;
+import pedro.iesb.apisite.dto.Cupom;
 import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.response.ItemCarrinhoResponse;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,15 +13,28 @@ import java.util.List;
 public class CarrinhoRepository {
 
     private final ProdutoRepository prodRepo;
+    private final CupomRepository cupRepo;
 
     private final List<ItemCarrinho> carrinho = new ArrayList<>();
 
-    public CarrinhoRepository(ProdutoRepository prodRepo) {
+    public CarrinhoRepository(ProdutoRepository prodRepo, CupomRepository cupRepo) {
         this.prodRepo = prodRepo;
+        this.cupRepo = cupRepo;
     }
 
-    public List<ItemCarrinho> getCarrinho(){
-        return carrinho;
+    public List<ItemCarrinhoResponse> getCarrinho(){
+
+        List<ItemCarrinhoResponse> ret = new ArrayList<>();
+
+        for (ItemCarrinho i: carrinho){
+            ret.add(new ItemCarrinhoResponseBuilder()
+                    .withNomeProduto(i.getNomeProduto())
+                    .withQtd(i.getQtd())
+                    .withPrecoUnitario(prodRepo.priceOf(i.getNomeProduto()))
+                    .build());
+        }
+
+        return ret;
     }
 
     public float valorCarrinho(){
@@ -28,6 +45,20 @@ public class CarrinhoRepository {
         }
 
         return price;
+    }
+
+    public float valorCarrinhoCupom(String cupom){
+
+        float desconto = 0;
+
+        for(Cupom c: cupRepo.get()){
+            if(c.getCod().equals(cupom)){
+                desconto = 1 - c.getValor();
+                return valorCarrinho() * desconto;
+            }
+        }
+
+        return -1;
     }
 
     public int adicionaProduto(ItemCarrinho item){

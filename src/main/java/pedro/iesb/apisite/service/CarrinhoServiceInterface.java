@@ -1,6 +1,7 @@
 package pedro.iesb.apisite.service;
 
 import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface CarrinhoServiceInterface {
 
     float valorDesconto(String desconto);
 
-    List<ItemCarrinho> getProdutos();
+    List<ItemCarrinhoResponse> getProdutos();
 
     void limparCarrinho();
 }

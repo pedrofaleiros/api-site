@@ -2,8 +2,10 @@ package pedro.iesb.apisite.convert;
 
 import pedro.iesb.apisite.builder.ClienteDTOBuilder;
 import pedro.iesb.apisite.builder.ClienteEntityBuilder;
+import pedro.iesb.apisite.builder.ClienteResponseBuilder;
 import pedro.iesb.apisite.dto.ClienteDto;
 import pedro.iesb.apisite.model.entities.ClienteEntity;
+import pedro.iesb.apisite.response.ClienteResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +27,12 @@ public class ClienteConvert {
                 .build();
     }
 
-    public ClienteDto getDTO(ClienteEntity cliente){
+    public ClienteResponse getResponse(ClienteEntity cliente){
 
-        return new ClienteDTOBuilder()
+        return new ClienteResponseBuilder()
                 .withEmail(cliente.getEmail())
                 .withName(cliente.getName())
                 .withCpf(cliente.getCpf())
-                .withPassword(cliente.getPassword())
                 .withEnderecoComercial(cliente.getEnderecoComercial())
                 .withEnderecoResidencial(cliente.getEnderecoResidencial())
                 .withTelefoneCelular(cliente.getTelefoneCelular())
@@ -40,15 +41,14 @@ public class ClienteConvert {
                 .build();
     }
 
-    public List<ClienteDto> listDTO(List<ClienteEntity> clientes){
+    public List<ClienteResponse> listResponse(List<ClienteEntity> clientes){
 
-        List<ClienteDto> clienteDTOs = new ArrayList<>();
+        List<ClienteResponse> clienteResponses = new ArrayList<>();
 
         for(ClienteEntity c:clientes){
-            c.setPassword(null);
-            clienteDTOs.add(getDTO(c));
+            clienteResponses.add(getResponse(c));
         }
 
-        return clienteDTOs;
+        return clienteResponses;
     }
 }

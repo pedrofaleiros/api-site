@@ -5,6 +5,7 @@ import pedro.iesb.apisite.convert.ClienteConvert;
 import pedro.iesb.apisite.dto.ClienteDto;
 import pedro.iesb.apisite.model.entities.ClienteEntity;
 import pedro.iesb.apisite.repository.ClienteRepository;
+import pedro.iesb.apisite.response.ClienteResponse;
 import pedro.iesb.apisite.service.ClienteServiceInterface;
 import pedro.iesb.apisite.validation.ClienteValidation;
 
@@ -43,8 +44,8 @@ public class ClienteService implements ClienteServiceInterface{
     }
 
     @Override
-    public List<ClienteDto> getClientes(){
-        return convert.listDTO(repository.getClientes());
+    public List<ClienteResponse> getClientes(){
+        return convert.listResponse(repository.getClientes());
     }
 
     @Override

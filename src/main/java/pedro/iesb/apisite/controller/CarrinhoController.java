@@ -3,6 +3,7 @@ package pedro.iesb.apisite.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 import pedro.iesb.apisite.service.imp.CarrinhoService;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class CarrinhoController {
     }
 
     @GetMapping("/carrinho")
-    public ResponseEntity<List<ItemCarrinho>> getCarrinho(){
+    public ResponseEntity<List<ItemCarrinhoResponse>> getCarrinho(){
         return ResponseEntity.ok().body(service.getProdutos());
     }
 
@@ -50,14 +51,14 @@ public class CarrinhoController {
         return ResponseEntity.ok().body("Preco Total: "+ preco);
     }
 
-    @GetMapping("/carrinho/desconto/{valor}")
-    public ResponseEntity<String> getPrecoTotal(@PathVariable("valor") String desconto){
+    @GetMapping("/carrinho/desconto/{cupom}")
+    public ResponseEntity<String> getPrecoTotal(@PathVariable("cupom") String cupom){
 
-        if(desconto == null){
-            return ResponseEntity.badRequest().build();
+        if(cupom == null){
+            return ResponseEntity.badRequest().body("Insira o CUPOM de desconto");
         }
 
-        float valor = service.valorDesconto(desconto);
+        float valor = service.valorDesconto(cupom);
 
         if(valor == -1){
             return ResponseEntity.badRequest().body("Desconto invalido");

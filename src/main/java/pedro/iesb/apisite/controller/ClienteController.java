@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pedro.iesb.apisite.dto.ClienteDto;
+import pedro.iesb.apisite.response.ClienteResponse;
 import pedro.iesb.apisite.service.imp.ClienteService;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class ClienteController {
     }
 
     @GetMapping("/cliente")
-    public ResponseEntity<List<ClienteDto>> getClientes(){
+    public ResponseEntity<List<ClienteResponse>> getClientes(){
         return ResponseEntity.ok().body(service.getClientes());
     }
 
