@@ -7,6 +7,7 @@ public class ItemCarrinhoResponseBuilder {
     private String nomeProduto;
     private int qtd;
     private float precoUnitario;
+    private float precoTotalProduto;
 
     public ItemCarrinhoResponseBuilder withNomeProduto(String nomeProduto){
         this.nomeProduto = nomeProduto;
@@ -23,7 +24,12 @@ public class ItemCarrinhoResponseBuilder {
         return this;
     }
 
+    public ItemCarrinhoResponseBuilder withPrecoTotalProduto(float precoTotalProduto){
+        this.precoTotalProduto = precoTotalProduto;
+        return this;
+    }
+
     public ItemCarrinhoResponse build(){
-        return new ItemCarrinhoResponse(nomeProduto, qtd, precoUnitario);
+        return new ItemCarrinhoResponse(nomeProduto, qtd, precoUnitario, precoTotalProduto);
     }
 }

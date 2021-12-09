@@ -31,6 +31,7 @@ public class CarrinhoRepository {
                     .withNomeProduto(i.getNomeProduto())
                     .withQtd(i.getQtd())
                     .withPrecoUnitario(prodRepo.priceOf(i.getNomeProduto()))
+                    .withPrecoTotalProduto(i.getQtd() * prodRepo.priceOf(i.getNomeProduto()))
                     .build());
         }
 

@@ -33,6 +33,15 @@ public class ClienteRepository {
         return null;
     }
 
+    public ClienteEntity getById(String id){
+        for(ClienteEntity c: clientes){
+            if(c.getId().equals(id)){
+                return c;
+            }
+        }
+        return null;
+    }
+
     public boolean findByName(String name){
         for(ClienteEntity c: clientes){
             if(c.getName().equals(name)){
