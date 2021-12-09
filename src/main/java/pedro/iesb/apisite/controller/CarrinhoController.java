@@ -51,7 +51,7 @@ public class CarrinhoController {
         return ResponseEntity.ok().body("Preco Total: "+ preco);
     }
 
-    @GetMapping("/carrinho/desconto/{cupom}")
+    @PostMapping("/carrinho/desconto/{cupom}")
     public ResponseEntity<String> getPrecoTotal(@PathVariable("cupom") String cupom){
 
         if(cupom == null){
@@ -61,7 +61,7 @@ public class CarrinhoController {
         float valor = service.valorDesconto(cupom);
 
         if(valor == -1){
-            return ResponseEntity.badRequest().body("Desconto invalido");
+            return ResponseEntity.badRequest().body("Cupom invalido");
         }
 
         String preco = Float.toString(valor);

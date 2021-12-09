@@ -7,9 +7,12 @@ public class Cupom {
     private String cod;
     private float valor;
 
+    public Cupom() {
+    }
+
     public Cupom(String cod, float valor) {
         this.cod = cod;
-        setValor(valor);
+        this.valor = valor;
     }
 
     public String getCod() {

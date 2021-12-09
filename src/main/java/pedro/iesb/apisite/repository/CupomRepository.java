@@ -18,6 +18,15 @@ public class CupomRepository {
         }
     }
 
+    public float findValorByCod(String cod){
+        for(Cupom c: cupons){
+            if(c.getCod().equals(cod)){
+                return c.getValor();
+            }
+        }
+        return 0;
+    }
+
     public List<Cupom> get(){
         return cupons;
     }

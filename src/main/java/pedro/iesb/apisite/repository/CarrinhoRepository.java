@@ -16,6 +16,7 @@ public class CarrinhoRepository {
     private final CupomRepository cupRepo;
 
     private final List<ItemCarrinho> carrinho = new ArrayList<>();
+    private final Cupom cupomAplicado = new Cupom(null, 0);
 
     public CarrinhoRepository(ProdutoRepository prodRepo, CupomRepository cupRepo) {
         this.prodRepo = prodRepo;
@@ -39,6 +40,16 @@ public class CarrinhoRepository {
     }
 
     public float valorCarrinho(){
+        float price = valorTotalCarrinho();
+
+        if(isCupomAplicado()){
+            price *=  (1 - cupomAplicado.getValor());
+        }
+
+        return price;
+    }
+
+    private float valorTotalCarrinho(){
         float price = 0;
 
         for(ItemCarrinho i: carrinho){
@@ -55,7 +66,9 @@ public class CarrinhoRepository {
         for(Cupom c: cupRepo.get()){
             if(c.getCod().equals(cupom)){
                 desconto = 1 - c.getValor();
-                return valorCarrinho() * desconto;
+                cupomAplicado.setCod(c.getCod());
+                cupomAplicado.setValor(c.getValor());
+                return valorTotalCarrinho() * desconto;
             }
         }
 
@@ -109,6 +122,9 @@ public class CarrinhoRepository {
         carrinho.clear();
     }
 
+    private boolean isCupomAplicado(){
+        return !(cupomAplicado.getCod() == null);
+    }
 
     private int indexByName(String name){
         for(ItemCarrinho i: carrinho){
