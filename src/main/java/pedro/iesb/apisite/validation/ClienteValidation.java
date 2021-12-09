@@ -1,6 +1,6 @@
 package pedro.iesb.apisite.validation;
 
-import pedro.iesb.apisite.dto.ClienteDTO;
+import pedro.iesb.apisite.dto.ClienteDto;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,7 +13,7 @@ public class ClienteValidation {
         this.validarCPF = new ValidarCPF();
     }
 
-    public String verify(ClienteDTO cliente){
+    public String verify(ClienteDto cliente){
 
         if(!verifyWithRegex(cliente.getEmail(), "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){

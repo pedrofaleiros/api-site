@@ -1,6 +1,5 @@
 package pedro.iesb.apisite.builder;
 
-import pedro.iesb.apisite.dto.ClienteDTO;
 import pedro.iesb.apisite.model.Endereco;
 import pedro.iesb.apisite.model.Telefone;
 import pedro.iesb.apisite.model.entities.ClienteEntity;

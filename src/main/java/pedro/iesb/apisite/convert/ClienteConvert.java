@@ -2,7 +2,7 @@ package pedro.iesb.apisite.convert;
 
 import pedro.iesb.apisite.builder.ClienteDTOBuilder;
 import pedro.iesb.apisite.builder.ClienteEntityBuilder;
-import pedro.iesb.apisite.dto.ClienteDTO;
+import pedro.iesb.apisite.dto.ClienteDto;
 import pedro.iesb.apisite.model.entities.ClienteEntity;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ClienteConvert {
 
-    public ClienteEntity getEntity(ClienteDTO cliente){
+    public ClienteEntity getEntity(ClienteDto cliente){
 
         return new ClienteEntityBuilder()
                 .withCpf(cliente.getCpf())
@@ -25,7 +25,7 @@ public class ClienteConvert {
                 .build();
     }
 
-    public ClienteDTO getDTO(ClienteEntity cliente){
+    public ClienteDto getDTO(ClienteEntity cliente){
 
         return new ClienteDTOBuilder()
                 .withEmail(cliente.getEmail())
@@ -40,9 +40,9 @@ public class ClienteConvert {
                 .build();
     }
 
-    public List<ClienteDTO> listDTO(List<ClienteEntity> clientes){
+    public List<ClienteDto> listDTO(List<ClienteEntity> clientes){
 
-        List<ClienteDTO> clienteDTOs = new ArrayList<>();
+        List<ClienteDto> clienteDTOs = new ArrayList<>();
 
         for(ClienteEntity c:clientes){
             c.setPassword(null);

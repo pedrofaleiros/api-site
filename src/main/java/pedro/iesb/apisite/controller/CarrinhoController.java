@@ -1,20 +1,22 @@
 package pedro.iesb.apisite.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pedro.iesb.apisite.dto.ItemCarrinhoDTO;
+import pedro.iesb.apisite.dto.ItemCarrinho;
 import pedro.iesb.apisite.service.imp.CarrinhoService;
 import java.util.List;
 
 @RestController
 public class CarrinhoController {
 
-    @Autowired
-    private CarrinhoService service;
+    private final CarrinhoService service;
+
+    public CarrinhoController(CarrinhoService service) {
+        this.service = service;
+    }
 
     @PostMapping("/carrinho")
-    public ResponseEntity<String> criaCarrinho(@RequestBody ItemCarrinhoDTO item){
+    public ResponseEntity<String> incluir(@RequestBody ItemCarrinho item){
 
         String ret = service.adicionarProduto(item);
 
@@ -26,9 +28,9 @@ public class CarrinhoController {
     }
 
     @PutMapping("/carrinho/update")
-    public ResponseEntity<String> atualizaCarrinho(@RequestBody ItemCarrinhoDTO item){
+    public ResponseEntity<String> alterar(@RequestBody ItemCarrinho item){
 
-        String ret = service.adicionarProduto(item);
+        String ret = service.atualizaProduto(item);
 
         if(ret != null){
             return ResponseEntity.badRequest().body(ret);
@@ -38,8 +40,8 @@ public class CarrinhoController {
     }
 
     @GetMapping("/carrinho")
-    public List<ItemCarrinhoDTO> getCarrinho(){
-        return service.getProdutos();
+    public ResponseEntity<List<ItemCarrinho>> getCarrinho(){
+        return ResponseEntity.ok().body(service.getProdutos());
     }
 
     @GetMapping("/carrinho/preco")
@@ -48,8 +50,8 @@ public class CarrinhoController {
         return ResponseEntity.ok().body("Preco Total: "+ preco);
     }
 
-    @GetMapping("/carrinho/desconto")
-    public ResponseEntity<String> getPrecoTotal(@RequestParam (required = false) String desconto){
+    @GetMapping("/carrinho/desconto/{valor}")
+    public ResponseEntity<String> getPrecoTotal(@PathVariable("valor") String desconto){
 
         if(desconto == null){
             return ResponseEntity.badRequest().build();
@@ -71,15 +73,15 @@ public class CarrinhoController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/carrinho/delete")
-    public ResponseEntity<String> deletaProduto(@RequestParam (required = false) String nome){
+    @DeleteMapping("/carrinho/delete/{name}")
+    public ResponseEntity<String> deletaProduto(@PathVariable ("name") String name){
 
-        if(nome == null){
+        if(name == null){
             return ResponseEntity.badRequest().body("Insira o nome do pruduto");
         }
 
-        if(!service.deleta(nome)){
-            return ResponseEntity.badRequest().build();
+        if(!service.deleteByName(name)){
+            return ResponseEntity.badRequest().body("Produto nao encontrado no carrinho");
         }
 
         return ResponseEntity.ok().build();

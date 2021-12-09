@@ -1,15 +1,15 @@
 package pedro.iesb.apisite.service;
 
-import pedro.iesb.apisite.dto.ProdutoDTO;
+import pedro.iesb.apisite.dto.ProdutoDto;
 import java.util.List;
 
 public interface ProdutoServiceInterface {
 
-    String cadastrar(ProdutoDTO prod);
+    String cadastrar(ProdutoDto prod);
 
-    List<ProdutoDTO> getProdutos();
+    List<ProdutoDto> getProdutos();
 
-    String atualizar(ProdutoDTO prod, String name);
+    String atualizar(ProdutoDto prod, String name);
 
-    boolean deleta(ProdutoDTO prod);
+    boolean deleta(ProdutoDto prod);
 }

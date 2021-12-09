@@ -1,8 +1,7 @@
 package pedro.iesb.apisite.repository;
 
 import org.springframework.stereotype.Repository;
-import pedro.iesb.apisite.dto.ItemCarrinhoDTO;
-import pedro.iesb.apisite.model.entities.ProdutoEntity;
+import pedro.iesb.apisite.dto.ItemCarrinho;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,24 +10,38 @@ public class CarrinhoRepository {
 
     private final ProdutoRepository prodRepo;
 
-    private final List<ItemCarrinhoDTO> carrinho = new ArrayList<>();
+    private final List<ItemCarrinho> carrinho = new ArrayList<>();
 
     public CarrinhoRepository(ProdutoRepository prodRepo) {
         this.prodRepo = prodRepo;
     }
 
-    public int adicionaProduto(ItemCarrinhoDTO item){
+    public List<ItemCarrinho> getCarrinho(){
+        return carrinho;
+    }
 
-        if (verificaExistencia(item)){
-            if(verificaQtd(item)){
-                for(ItemCarrinhoDTO i:carrinho){
-                    if(i.getNomeProduto().equals(item.getNomeProduto())){
-                        carrinho.set(carrinho.indexOf(i), item);
-                        return 0;
-                    }
+    public float valorCarrinho(){
+        float price = 0;
+
+        for(ItemCarrinho i: carrinho){
+            price = price + (i.getQtd() * prodRepo.priceOf(i.getNomeProduto()));
+        }
+
+        return price;
+    }
+
+    public int adicionaProduto(ItemCarrinho item){
+
+        if(prodRepo.findByName(item.getNomeProduto())){
+            if(prodRepo.validQtd(item.getNomeProduto(), item.getQtd() + qtdItemCarrinho(item.getNomeProduto()))){
+
+                if(notInCarrinho(item)){
+                    carrinho.add(item);
+                }else{
+                    item.setQtd(item.getQtd() + qtdItemCarrinho(item.getNomeProduto()));
+                    carrinho.set(indexByName(item.getNomeProduto()), item);
                 }
 
-                carrinho.add(item);
                 return 0;
             }
             return 2;
@@ -37,51 +50,59 @@ public class CarrinhoRepository {
         return 1;
     }
 
-    public List<ItemCarrinhoDTO> getCarrinho(){
-        return carrinho;
-    }
+    public int atualizaProduto(ItemCarrinho item){
 
-    public float valorCarrinho(){
-        float valor = 0;
-
-        for(ItemCarrinhoDTO i:carrinho){
-            valor = valor + (i.getQtd() * prodRepo.priceOf(i.getNomeProduto()));
+        if(prodRepo.findByName(item.getNomeProduto())){
+            if(prodRepo.validQtd(item.getNomeProduto(), item.getQtd())){
+                carrinho.set(indexByName(item.getNomeProduto()), item);
+                return 0;
+            }
+            return 2;
         }
 
-        return valor;
+        return 0;
+    }
+
+    public boolean deleteByName(String name){
+        for(ItemCarrinho i: carrinho){
+            if(i.getNomeProduto().equals(name)){
+                carrinho.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void limparCarrinho(){
         carrinho.clear();
     }
 
-    public boolean delete(String name){
 
-        for(ItemCarrinhoDTO i: carrinho){
+    private int indexByName(String name){
+        for(ItemCarrinho i: carrinho){
             if(i.getNomeProduto().equals(name)){
-                carrinho.remove(i);
-                return true;
+                return carrinho.indexOf(i);
             }
         }
-
-        return false;
+        return 0;
     }
 
-    private boolean verificaExistencia(ItemCarrinhoDTO item){
-        for(ProdutoEntity p: prodRepo.get()){
-            if(p.getName().equals(item.getNomeProduto())){
-                return true;
+    private int qtdItemCarrinho(String name){
+        for(ItemCarrinho i: carrinho){
+            if(i.getNomeProduto().equals(name)){
+                return i.getQtd();
             }
         }
-        return false;
+        return 0;
     }
 
-    private boolean verificaQtd(ItemCarrinhoDTO item){
-        for(ProdutoEntity p: prodRepo.get()){
-            if(p.getName().equals(item.getNomeProduto())){
-                return p.getQtd() > item.getQtd();
+    private boolean notInCarrinho(ItemCarrinho item){
+        for(ItemCarrinho i: carrinho){
+            if(i.getNomeProduto().equals(item.getNomeProduto())){
+                return false;
             }
         }
-        return false;
+        return true;
     }
+
 }

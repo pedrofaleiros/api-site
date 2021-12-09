@@ -1,6 +1,6 @@
 package pedro.iesb.apisite.dto;
 
-public class ProdutoDTO {
+public class ProdutoDto {
 
     private String name;
     private String description;
@@ -8,10 +8,10 @@ public class ProdutoDTO {
     private int qtd;
     private String section;
 
-    public ProdutoDTO() {
+    public ProdutoDto() {
     }
 
-    public ProdutoDTO(String name, String description, float price, int qtd, String section) {
+    public ProdutoDto(String name, String description, float price, int qtd, String section) {
         this.name = name;
         this.description = description;
         this.price = price;

@@ -1,21 +1,22 @@
 package pedro.iesb.apisite.service;
 
-import pedro.iesb.apisite.dto.ItemCarrinhoDTO;
-import pedro.iesb.apisite.dto.ProdutoDTO;
+import pedro.iesb.apisite.dto.ItemCarrinho;
 
 import java.util.List;
 
 public interface CarrinhoServiceInterface {
 
-    String adicionarProduto(ItemCarrinhoDTO item);// adiciona e altera
+    String adicionarProduto(ItemCarrinho item);// adiciona e altera
 
-    boolean deleta(String prod);
+    String atualizaProduto(ItemCarrinho item);// adiciona e altera
+
+    boolean deleteByName(String prod);
 
     float valorTotal();
 
     float valorDesconto(String desconto);
 
-    List<ItemCarrinhoDTO> getProdutos();
+    List<ItemCarrinho> getProdutos();
 
     void limparCarrinho();
 }

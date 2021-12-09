@@ -3,7 +3,7 @@ package pedro.iesb.apisite.dto;
 import pedro.iesb.apisite.model.Endereco;
 import pedro.iesb.apisite.model.Telefone;
 
-public class ClienteDTO {
+public class ClienteDto {
 
     private String name;
     private String cpf;
@@ -12,10 +12,10 @@ public class ClienteDTO {
     private Telefone telefone;
     private Endereco endereco;
 
-    public ClienteDTO() {
+    public ClienteDto() {
     }
 
-    public ClienteDTO(String name, String cpf, String email,
+    public ClienteDto(String name, String cpf, String email,
                       String password, Telefone telefone, Endereco endereco) {
         this.name = name;
         this.cpf = cpf;

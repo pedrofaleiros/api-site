@@ -2,7 +2,7 @@ package pedro.iesb.apisite.service.imp;
 
 import org.springframework.stereotype.Service;
 import pedro.iesb.apisite.convert.ClienteConvert;
-import pedro.iesb.apisite.dto.ClienteDTO;
+import pedro.iesb.apisite.dto.ClienteDto;
 import pedro.iesb.apisite.model.entities.ClienteEntity;
 import pedro.iesb.apisite.repository.ClienteRepository;
 import pedro.iesb.apisite.service.ClienteServiceInterface;
@@ -25,7 +25,7 @@ public class ClienteService implements ClienteServiceInterface{
     }
 
     @Override
-    public String cadastrar(ClienteDTO cliente){
+    public String cadastrar(ClienteDto cliente){
 
         if(repository.findByName(cliente.getName())){
             return "Usuario ja existe";
@@ -43,12 +43,12 @@ public class ClienteService implements ClienteServiceInterface{
     }
 
     @Override
-    public List<ClienteDTO> getClientes(){
+    public List<ClienteDto> getClientes(){
         return convert.listDTO(repository.getClientes());
     }
 
     @Override
-    public String login(ClienteDTO cliente){
+    public String login(ClienteDto cliente){
         return repository.login(cliente.getName(), cliente.getPassword());
     }
 }

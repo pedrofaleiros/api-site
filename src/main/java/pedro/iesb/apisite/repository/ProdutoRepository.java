@@ -62,4 +62,22 @@ public class ProdutoRepository {
 
         return 0;
     }
+
+    public boolean validQtd(String name, int qtd){
+        for(ProdutoEntity p: produtos){
+            if(p.getName().equals(name)){
+                return p.getQtd() >= qtd;
+            }
+        }
+        return false;
+    }
+
+    public boolean findByName(String name){
+        for(ProdutoEntity p: produtos){
+            if(p.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

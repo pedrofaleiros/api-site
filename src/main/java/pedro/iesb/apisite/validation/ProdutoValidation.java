@@ -1,10 +1,10 @@
 package pedro.iesb.apisite.validation;
 
-import pedro.iesb.apisite.dto.ProdutoDTO;
+import pedro.iesb.apisite.dto.ProdutoDto;
 
 public class ProdutoValidation {
 
-    public String verify(ProdutoDTO prod){
+    public String verify(ProdutoDto prod){
 
         if(prod.getName().equals("")){
             return "Nome invalido";

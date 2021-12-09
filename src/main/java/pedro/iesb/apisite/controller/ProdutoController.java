@@ -2,7 +2,7 @@ package pedro.iesb.apisite.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pedro.iesb.apisite.dto.ProdutoDTO;
+import pedro.iesb.apisite.dto.ProdutoDto;
 import pedro.iesb.apisite.service.imp.ProdutoService;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class ProdutoController {
     }
 
     @PostMapping("/produto")
-    public ResponseEntity<String> cadastraProduto(@RequestBody ProdutoDTO produto){
+    public ResponseEntity<String> cadastraProduto(@RequestBody ProdutoDto produto){
 
         String retorno = service.cadastrar(produto);
 
@@ -28,13 +28,13 @@ public class ProdutoController {
     }
 
     @GetMapping("/produto")
-    public ResponseEntity<List<ProdutoDTO>> mostraProdutos(){
+    public ResponseEntity<List<ProdutoDto>> mostraProdutos(){
         return ResponseEntity.ok(service.getProdutos());
     }
 
-    @PutMapping("/produto")
-    public ResponseEntity<String> atualizaProduto(@RequestParam(required = false) String name,
-                                                  @RequestBody ProdutoDTO prod){
+    @PutMapping("/produto/{name}")
+    public ResponseEntity<String> atualizaProduto(@PathVariable ("name") String name,
+                                                  @RequestBody ProdutoDto prod){
 
         if(name == null){
             return ResponseEntity.badRequest().body("Insira o nome");
@@ -50,7 +50,7 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/produto")
-    public ResponseEntity<String> deletaProduto(@RequestBody ProdutoDTO prod){
+    public ResponseEntity<String> deletaProduto(@RequestBody ProdutoDto prod){
         if(service.deleta(prod)){
             return ResponseEntity.ok().build();
         }

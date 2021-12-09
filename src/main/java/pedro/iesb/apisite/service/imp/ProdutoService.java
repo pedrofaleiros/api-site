@@ -2,7 +2,7 @@ package pedro.iesb.apisite.service.imp;
 
 import org.springframework.stereotype.Service;
 import pedro.iesb.apisite.convert.ProdutoConvert;
-import pedro.iesb.apisite.dto.ProdutoDTO;
+import pedro.iesb.apisite.dto.ProdutoDto;
 import pedro.iesb.apisite.model.entities.ProdutoEntity;
 import pedro.iesb.apisite.repository.ProdutoRepository;
 import pedro.iesb.apisite.service.ProdutoServiceInterface;
@@ -24,9 +24,13 @@ public class ProdutoService implements ProdutoServiceInterface {
     }
 
     @Override
-    public String cadastrar(ProdutoDTO prod){
+    public String cadastrar(ProdutoDto prod){
 
         String retorno = validation.verify(prod);
+
+        if(repository.findByName(prod.getName())){
+            retorno = "Produto ja existe";
+        }
 
         if(retorno == null){
             ProdutoEntity novo = convert.getEntity(prod);
@@ -38,12 +42,12 @@ public class ProdutoService implements ProdutoServiceInterface {
     }
 
     @Override
-    public List<ProdutoDTO> getProdutos(){
+    public List<ProdutoDto> getProdutos(){
         return convert.listDTO(repository.get());
     }
 
     @Override
-    public String atualizar(ProdutoDTO prod, String name){
+    public String atualizar(ProdutoDto prod, String name){
         String retorno = validation.verify(prod);
 
         if(name.equals("")){
@@ -60,7 +64,7 @@ public class ProdutoService implements ProdutoServiceInterface {
     }
 
     @Override
-    public boolean deleta(ProdutoDTO prod){
+    public boolean deleta(ProdutoDto prod){
 
         return repository.delete(convert.getEntity(prod));
     }

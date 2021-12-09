@@ -1,6 +1,6 @@
 package pedro.iesb.apisite.builder;
 
-import pedro.iesb.apisite.dto.ProdutoDTO;
+import pedro.iesb.apisite.dto.ProdutoDto;
 
 public class ProdutoDTOBuilder {
 
@@ -35,7 +35,7 @@ public class ProdutoDTOBuilder {
         return this;
     }
 
-    public ProdutoDTO build(){
-        return new ProdutoDTO( name, description, price, qtd, section);
+    public ProdutoDto build(){
+        return new ProdutoDto( name, description, price, qtd, section);
     }
 }

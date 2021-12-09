@@ -1,7 +1,7 @@
 package pedro.iesb.apisite.service.imp;
 
 import org.springframework.stereotype.Service;
-import pedro.iesb.apisite.dto.ItemCarrinhoDTO;
+import pedro.iesb.apisite.dto.ItemCarrinho;
 import pedro.iesb.apisite.repository.CarrinhoRepository;
 import pedro.iesb.apisite.service.CarrinhoServiceInterface;
 import java.util.List;
@@ -16,7 +16,7 @@ public class CarrinhoService implements CarrinhoServiceInterface {
     }
 
     @Override
-    public String adicionarProduto(ItemCarrinhoDTO item) {// adiciona e altera
+    public String adicionarProduto(ItemCarrinho item) {
         int retorno = repository.adicionaProduto(item);
 
         switch (retorno){
@@ -28,8 +28,20 @@ public class CarrinhoService implements CarrinhoServiceInterface {
     }
 
     @Override
-    public boolean deleta(String prod){
-        return repository.delete(prod);
+    public String atualizaProduto(ItemCarrinho item) {
+        int retorno = repository.atualizaProduto(item);
+
+        switch (retorno){
+            case 1: return "Produto nao encontrado";
+            case 2: return "Quantidade invalida";
+        }
+
+        return null;
+    }
+
+    @Override
+    public boolean deleteByName(String name){
+        return repository.deleteByName(name);
     }
 
     @Override
@@ -55,7 +67,7 @@ public class CarrinhoService implements CarrinhoServiceInterface {
     }
 
     @Override
-    public List<ItemCarrinhoDTO> getProdutos(){
+    public List<ItemCarrinho> getProdutos(){
         return repository.getCarrinho();
     }
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pedro.iesb.apisite.dto.ClienteDTO;
+import pedro.iesb.apisite.dto.ClienteDto;
 import pedro.iesb.apisite.service.imp.ClienteService;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ClienteController {
     }
 
     @PostMapping("/cliente")
-    public ResponseEntity<String> cadastraCliente(@RequestBody ClienteDTO cliente){
+    public ResponseEntity<String> cadastraCliente(@RequestBody ClienteDto cliente){
 
         String retorno = service.cadastrar(cliente);
 
@@ -33,12 +33,12 @@ public class ClienteController {
     }
 
     @GetMapping("/cliente")
-    public List<ClienteDTO> getClientes(){
-        return service.getClientes();
+    public ResponseEntity<List<ClienteDto>> getClientes(){
+        return ResponseEntity.ok().body(service.getClientes());
     }
 
     @PostMapping("cliente/login")
-    public ResponseEntity<String> loginCliente(@RequestBody ClienteDTO cliente){
+    public ResponseEntity<String> loginCliente(@RequestBody ClienteDto cliente){
 
         String id = service.login(cliente);
 

@@ -1,14 +1,14 @@
 package pedro.iesb.apisite.service;
 
-import pedro.iesb.apisite.dto.ClienteDTO;
+import pedro.iesb.apisite.dto.ClienteDto;
 
 import java.util.List;
 
 public interface ClienteServiceInterface {
 
-    String cadastrar(ClienteDTO prod);
+    String cadastrar(ClienteDto prod);
 
-    List<ClienteDTO> getClientes();
+    List<ClienteDto> getClientes();
 
-    String login(ClienteDTO cliente);
+    String login(ClienteDto cliente);
 }

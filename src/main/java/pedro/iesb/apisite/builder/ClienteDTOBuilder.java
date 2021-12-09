@@ -1,6 +1,6 @@
 package pedro.iesb.apisite.builder;
 
-import pedro.iesb.apisite.dto.ClienteDTO;
+import pedro.iesb.apisite.dto.ClienteDto;
 import pedro.iesb.apisite.model.Endereco;
 import pedro.iesb.apisite.model.Telefone;
 
@@ -58,8 +58,8 @@ public class ClienteDTOBuilder {
         return this;
     }
 
-    public ClienteDTO build(){
-        return new ClienteDTO(name, cpf, email,
+    public ClienteDto build(){
+        return new ClienteDto(name, cpf, email,
                 password,
                 new Telefone(telefone.getTelefoneResidencial(),
                 telefone.getTelefoneComercial(),

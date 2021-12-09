@@ -1,11 +1,11 @@
 package pedro.iesb.apisite.dto;
 
-public class ItemCarrinhoDTO {
+public class ItemCarrinho {
 
     private String nomeProduto;
     private int qtd;
 
-    public ItemCarrinhoDTO(String nomeProduto, int qtd) {
+    public ItemCarrinho(String nomeProduto, int qtd) {
         this.nomeProduto = nomeProduto;
         this.qtd = qtd;
     }
