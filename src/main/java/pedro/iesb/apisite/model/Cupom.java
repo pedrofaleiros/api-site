@@ -1,4 +1,4 @@
-package pedro.iesb.apisite.dto;
+package pedro.iesb.apisite.model;
 
 import java.util.Locale;
 

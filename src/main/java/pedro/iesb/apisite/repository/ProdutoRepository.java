@@ -2,7 +2,7 @@ package pedro.iesb.apisite.repository;
 
 import org.springframework.stereotype.Repository;
 import pedro.iesb.apisite.model.entities.ProdutoEntity;
-
+import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,5 +79,17 @@ public class ProdutoRepository {
             }
         }
         return false;
+    }
+
+    public void compra(List<ItemCarrinhoResponse> vendidos){
+
+        for(ItemCarrinhoResponse i: vendidos){
+            for(ProdutoEntity p: produtos){
+                if (p.getName().equals(i.getNomeProduto())){
+                    p.setQtd(p.getQtd()-i.getQtd());
+                    p.setSold(i.getQtd());
+                }
+            }
+        }
     }
 }

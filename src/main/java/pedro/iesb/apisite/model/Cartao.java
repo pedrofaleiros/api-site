@@ -1,16 +1,16 @@
-package pedro.iesb.apisite.dto;
+package pedro.iesb.apisite.model;
 
 public class Cartao {
 
     private String numero;
     private String dataValidade;
     private String name;
-    private int cvv;
+    private String cvv;
 
     public Cartao() {
     }
 
-    public Cartao(String numero, String dataValidade, String name, int cvv) {
+    public Cartao(String numero, String dataValidade, String name, String cvv) {
         this.numero = numero;
         this.dataValidade = dataValidade;
         this.name = name;
@@ -41,11 +41,11 @@ public class Cartao {
         this.name = name;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
 }
