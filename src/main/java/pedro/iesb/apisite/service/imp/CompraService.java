@@ -38,10 +38,10 @@ public class CompraService implements CompraServiceInterface {
     }
 
     @Override
-    public CompraResponse mostra(){
-        CompraEntity dados = repository.mostra();
+    public CompraResponse getDados(){
+        CompraEntity dados = repository.getDados();
 
-        CompraResponse dadosResponse = new CompraResponseBuilder()
+        return new CompraResponseBuilder()
                 .withCarrinho(dados.getCarrinho())
                 .withCartao(dados.getCartao())
                 .withCliente(convert.getResponse(dados.getCliente()))
@@ -50,8 +50,6 @@ public class CompraService implements CompraServiceInterface {
                 .withEnderecoEntrega(dados.getEnderecoEntrega())
                 .withValorTotal(dados.getValorTotal())
                 .build();
-
-        return dadosResponse;
     }
 
     @Override

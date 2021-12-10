@@ -1,6 +1,6 @@
 package pedro.iesb.apisite.service;
 
-import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.model.ItemCarrinho;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 
 import java.util.List;

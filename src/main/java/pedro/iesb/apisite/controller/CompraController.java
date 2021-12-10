@@ -23,8 +23,8 @@ public class CompraController {
     }
 
     @GetMapping("/compra")
-    public ResponseEntity<CompraResponse> mostra(){
-        return ResponseEntity.ok().body(service.mostra());
+    public ResponseEntity<CompraResponse> getDados(){
+        return ResponseEntity.ok().body(service.getDados());
     }
 
     @PostMapping("/compra")

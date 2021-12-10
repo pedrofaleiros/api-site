@@ -2,7 +2,7 @@ package pedro.iesb.apisite.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.model.ItemCarrinho;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 import pedro.iesb.apisite.service.imp.CarrinhoService;
 import java.util.List;

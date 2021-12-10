@@ -7,7 +7,7 @@ public interface CompraServiceInterface {
 
     String compra(PagamentoDto dados);
 
-    CompraResponse mostra();
+    CompraResponse getDados();
 
     boolean finalizar();
 

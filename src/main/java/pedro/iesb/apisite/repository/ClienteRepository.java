@@ -22,11 +22,12 @@ public class ClienteRepository {
     public String login(String name, String password){
         for(ClienteEntity c: clientes){
             if(c.getName().equals(name)){
+                LoginRepository login = LoginRepository.getInstancia();
                 if(c.getPassword().equals(password)){
-                    LoginRepository login = LoginRepository.getInstancia();
                     login.setLogin(c.getId());
                     return c.getId();
                 }
+                login.setLogin(null);
                 return null;
             }
         }

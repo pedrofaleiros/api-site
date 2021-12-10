@@ -21,7 +21,7 @@ public class CompraRepository {
         this.produtoRepository = produtoRepository;
     }
 
-    public CompraEntity mostra(){
+    public CompraEntity getDados(){
         return dadosCompra;
     }
 
@@ -38,20 +38,11 @@ public class CompraRepository {
                 .withEnderecoEntrega(dadosPagamento.getEnderecoEntrega())
                 .withValorTotal(carrinhoRepository.valorCarrinho())
                 .build();
-/*
-        dadosCompra.setCartao(dadosPagamento.getCartao());
-        dadosCompra.setCarrinho(carrinhoRepository.getCarrinho());
-        dadosCompra.setCliente(clienteRepository.getById(login.getLogin()));
-        dadosCompra.setEnderecoCobranca(dadosPagamento.getEnderecoCobranca());
-        dadosCompra.setEnderecoEntrega(dadosPagamento.getEnderecoEntrega());
-        dadosCompra.setValorTotal(carrinhoRepository.valorCarrinho());
-        dadosCompra.setCodCupom(carrinhoRepository.getCupom());
-        */
-
     }
 
     public void finalizar(){
         produtoRepository.compra(carrinhoRepository.getCarrinho());
         carrinhoRepository.limparCarrinho();
+        carrinhoRepository.apagaCupom();
     }
 }

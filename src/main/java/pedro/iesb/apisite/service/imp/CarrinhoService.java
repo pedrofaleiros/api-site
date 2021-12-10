@@ -1,7 +1,7 @@
 package pedro.iesb.apisite.service.imp;
 
 import org.springframework.stereotype.Service;
-import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.model.ItemCarrinho;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 import pedro.iesb.apisite.repository.CarrinhoRepository;
 import pedro.iesb.apisite.service.CarrinhoServiceInterface;

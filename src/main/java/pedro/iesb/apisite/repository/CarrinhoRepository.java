@@ -3,7 +3,7 @@ package pedro.iesb.apisite.repository;
 import org.springframework.stereotype.Repository;
 import pedro.iesb.apisite.builder.ItemCarrinhoResponseBuilder;
 import pedro.iesb.apisite.model.Cupom;
-import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.model.ItemCarrinho;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 
 import java.util.ArrayList;
@@ -124,6 +124,11 @@ public class CarrinhoRepository {
 
     public String getCupom(){
         return cupomAplicado.getCod();
+    }
+
+    public void apagaCupom(){
+        this.cupomAplicado.setCod(null);
+        this.cupomAplicado.setValor(0);
     }
 
     private boolean isCupomAplicado(){

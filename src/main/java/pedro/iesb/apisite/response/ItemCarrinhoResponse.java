@@ -1,6 +1,6 @@
 package pedro.iesb.apisite.response;
 
-import pedro.iesb.apisite.dto.ItemCarrinho;
+import pedro.iesb.apisite.model.ItemCarrinho;
 
 public class ItemCarrinhoResponse extends ItemCarrinho {
 
