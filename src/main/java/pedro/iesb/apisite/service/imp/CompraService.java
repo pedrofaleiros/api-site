@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pedro.iesb.apisite.dto.PagamentoDto;
 import pedro.iesb.apisite.model.entities.CompraEntity;
 import pedro.iesb.apisite.repository.CompraRepository;
+import pedro.iesb.apisite.repository.LoginRepository;
 import pedro.iesb.apisite.service.CompraServiceInterface;
 import pedro.iesb.apisite.validation.CartaoValidation;
 
@@ -24,6 +25,11 @@ public class CompraService implements CompraServiceInterface {
 
     @Override
     public String compra(PagamentoDto dados){
+
+        LoginRepository login = LoginRepository.getInstancia();
+        if(login.getLogin() == null){
+            return "Nenhum usuario logado";
+        }
 
         String retorno = validation.validar(dados.getCartao());
 

@@ -29,6 +29,10 @@ public class CompraController {
 
         String retorno = service.compra(dados);
 
+        if(retorno != null){
+            return ResponseEntity.badRequest().body(retorno);
+        }
+
         return ResponseEntity.ok().build();
     }
 }
