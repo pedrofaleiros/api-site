@@ -65,25 +65,5 @@ public class ClienteEntity extends AbstractEntity {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
-    public String getTelefoneResidencial() {
-        return telefone.getTelefoneResidencial();
-    }
-
-    public String getTelefoneComercial() {
-        return telefone.getTelefoneComercial();
-    }
-
-    public String getTelefoneCelular() {
-        return telefone.getTelefoneCelular();
-    }
-
-    public String getEnderecoComercial() {
-        return endereco.getEnderecoComercial();
-    }
-
-    public String getEnderecoResidencial() {
-        return endereco.getEnderecoResidencial();
-    }
 }
 

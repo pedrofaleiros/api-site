@@ -1,6 +1,7 @@
 package pedro.iesb.apisite.repository;
 
 import org.springframework.stereotype.Repository;
+import pedro.iesb.apisite.builder.CompraEntityBuilder;
 import pedro.iesb.apisite.dto.PagamentoDto;
 import pedro.iesb.apisite.model.entities.CompraEntity;
 
@@ -28,8 +29,16 @@ public class CompraRepository {
 
         LoginRepository login = LoginRepository.getInstancia();
 
-        dadosCompra = new CompraEntity();
-
+        dadosCompra = new CompraEntityBuilder()
+                .withCarrinho(carrinhoRepository.getCarrinho())
+                .withCartao(dadosPagamento.getCartao())
+                .withCliente(clienteRepository.getById(login.getLogin()))
+                .withCodCupom(carrinhoRepository.getCupom())
+                .withEnderecoCobranca(dadosPagamento.getEnderecoCobranca())
+                .withEnderecoEntrega(dadosPagamento.getEnderecoEntrega())
+                .withValorTotal(carrinhoRepository.valorCarrinho())
+                .build();
+/*
         dadosCompra.setCartao(dadosPagamento.getCartao());
         dadosCompra.setCarrinho(carrinhoRepository.getCarrinho());
         dadosCompra.setCliente(clienteRepository.getById(login.getLogin()));
@@ -37,6 +46,7 @@ public class CompraRepository {
         dadosCompra.setEnderecoEntrega(dadosPagamento.getEnderecoEntrega());
         dadosCompra.setValorTotal(carrinhoRepository.valorCarrinho());
         dadosCompra.setCodCupom(carrinhoRepository.getCupom());
+        */
 
     }
 

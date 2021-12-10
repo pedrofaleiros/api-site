@@ -33,11 +33,11 @@ public class ClienteConvert {
                 .withEmail(cliente.getEmail())
                 .withName(cliente.getName())
                 .withCpf(cliente.getCpf())
-                .withEnderecoComercial(cliente.getEnderecoComercial())
-                .withEnderecoResidencial(cliente.getEnderecoResidencial())
-                .withTelefoneCelular(cliente.getTelefoneCelular())
-                .withTelefoneComercial(cliente.getTelefoneComercial())
-                .withTelefoneResidencial(cliente.getTelefoneResidencial())
+                .withEnderecoComercial(cliente.getEndereco().getEnderecoComercial())
+                .withEnderecoResidencial(cliente.getEndereco().getEnderecoResidencial())
+                .withTelefoneCelular(cliente.getTelefone().getTelefoneCelular())
+                .withTelefoneComercial(cliente.getTelefone().getTelefoneComercial())
+                .withTelefoneResidencial(cliente.getTelefone().getTelefoneResidencial())
                 .build();
     }
 

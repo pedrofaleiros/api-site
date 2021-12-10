@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pedro.iesb.apisite.dto.PagamentoDto;
 import pedro.iesb.apisite.model.entities.CompraEntity;
+import pedro.iesb.apisite.response.CompraResponse;
 import pedro.iesb.apisite.service.imp.CompraService;
+
+import java.util.List;
 
 @RestController
 public class CompraController {
@@ -20,8 +23,8 @@ public class CompraController {
     }
 
     @GetMapping("/compra")
-    public CompraEntity mostra(){
-        return service.mostra();
+    public ResponseEntity<CompraResponse> mostra(){
+        return ResponseEntity.ok().body(service.mostra());
     }
 
     @PostMapping("/compra")
@@ -39,8 +42,10 @@ public class CompraController {
     @PostMapping("/compra/finalizar")
     public ResponseEntity<String> compra(){
 
-        service.finalizar();
+        if(service.finalizar()){
+            return ResponseEntity.ok().build();
+        }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.badRequest().body("nenhum usuario logado");
     }
 }
