@@ -38,6 +38,9 @@ public class CompraRepository {
         dadosCompra.setValorTotal(carrinhoRepository.valorCarrinho());
         dadosCompra.setCodCupom(carrinhoRepository.getCupom());
 
+    }
+
+    public void finalizar(){
         produtoRepository.compra(carrinhoRepository.getCarrinho());
         carrinhoRepository.limparCarrinho();
     }

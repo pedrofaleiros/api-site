@@ -19,6 +19,12 @@ public class CompraService implements CompraServiceInterface {
         this.validation = new CartaoValidation();
     }
 
+    @Override
+    public void finalizar(){
+        repository.finalizar();
+    }
+
+    @Override
     public CompraEntity mostra(){
         return repository.mostra();
     }

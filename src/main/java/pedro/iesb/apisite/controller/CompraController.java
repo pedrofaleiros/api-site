@@ -35,4 +35,12 @@ public class CompraController {
 
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/compra/finalizar")
+    public ResponseEntity<String> compra(){
+
+        service.finalizar();
+
+        return ResponseEntity.ok().build();
+    }
 }
