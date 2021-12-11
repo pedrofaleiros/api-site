@@ -39,17 +39,8 @@ public class ProdutoRepository {
         return false;
     }
 
-    public boolean delete(ProdutoEntity prod){
-
-        for(ProdutoEntity p: produtos){
-            if(p.getName().equals(prod.getName())){
-                if(p.getSold() == 0){
-                    produtos.remove(p);
-                    return true;
-                }
-            }
-        }
-        return false;
+    public void delete(ProdutoEntity prod){
+        produtos.remove(prod);
     }
 
     public float priceOf(String name){
@@ -70,6 +61,15 @@ public class ProdutoRepository {
             }
         }
         return false;
+    }
+
+    public ProdutoEntity getByName(String name){
+        for(ProdutoEntity p: produtos){
+            if(p.getName().equals(name)){
+                return p;
+            }
+        }
+        return null;
     }
 
     public boolean findByName(String name){

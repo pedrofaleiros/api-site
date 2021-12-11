@@ -2,10 +2,7 @@ package pedro.iesb.apisite.validation;
 
 import pedro.iesb.apisite.dto.ClienteDto;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class ClienteValidation {
+public class ClienteValidation extends CartaoValidation {
 
     private final ValidarCPF validarCPF;
 
@@ -53,13 +50,5 @@ public class ClienteValidation {
         }
 
         return null;
-    }
-
-    private boolean verifyWithRegex(String str, String regex){
-        Pattern pattern = Pattern.compile(regex);
-
-        Matcher matcher = pattern.matcher(str);
-
-        return matcher.matches();
     }
 }

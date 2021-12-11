@@ -60,7 +60,7 @@ public class CompraService implements CompraServiceInterface {
             return "Nenhum usuario logado";
         }
 
-        String retorno = validation.validar(dados.getCartao());
+        String retorno = validation.verify(dados.getCartao());
 
         if(retorno != null){
             return retorno;

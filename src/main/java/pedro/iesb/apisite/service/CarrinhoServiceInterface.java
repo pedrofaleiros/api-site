@@ -13,9 +13,9 @@ public interface CarrinhoServiceInterface {
 
     boolean deleteByName(String prod);
 
-    float valorTotal();
+    String valorTotal();
 
-    float valorDesconto(String desconto);
+    String valorDesconto(String desconto);
 
     List<ItemCarrinhoResponse> getProdutos();
 

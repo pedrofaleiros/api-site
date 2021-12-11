@@ -48,24 +48,36 @@ public class ProdutoService implements ProdutoServiceInterface {
 
     @Override
     public String atualizar(ProdutoDto prod, String name){
+
+        if (name == null || name.equals("")){
+            return "Insira o nome do produto";
+        }
+
         String retorno = validation.verify(prod);
 
-        if(name.equals("")){
-            return "Nome invalido";
+        if(retorno != null){
+            return retorno;
         }
 
-        if(retorno == null){
-            if(!repository.update(convert.getEntity(prod), name)){
-                return "Produto nao encontrado";
-            };
-        }
+        if(!repository.update(convert.getEntity(prod), name)){
+            return "Produto nao encontrado";
+        };
 
-        return retorno;
+        return null;
     }
 
     @Override
-    public boolean deleta(ProdutoDto prod){
+    public boolean deleta(String name){
 
-        return repository.delete(convert.getEntity(prod));
+        ProdutoEntity p = repository.getByName(name);
+
+        if(p != null){
+            if(p.getSold() == 0){
+                repository.delete(p);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

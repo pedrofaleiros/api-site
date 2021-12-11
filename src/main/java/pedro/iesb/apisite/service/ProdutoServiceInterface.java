@@ -11,5 +11,5 @@ public interface ProdutoServiceInterface {
 
     String atualizar(ProdutoDto prod, String name);
 
-    boolean deleta(ProdutoDto prod);
+    boolean deleta(String name);
 }

@@ -36,10 +36,6 @@ public class ProdutoController {
     public ResponseEntity<String> atualizaProduto(@PathVariable ("name") String name,
                                                   @RequestBody ProdutoDto prod){
 
-        if(name == null){
-            return ResponseEntity.badRequest().body("Insira o nome");
-        }
-
         String retorno = service.atualizar(prod, name);
 
         if(retorno != null){
@@ -49,9 +45,9 @@ public class ProdutoController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/produto")
-    public ResponseEntity<String> deletaProduto(@RequestBody ProdutoDto prod){
-        if(service.deleta(prod)){
+    @DeleteMapping("/produto/{name}")
+    public ResponseEntity<String> deletaProduto(@PathVariable ("name") String name){
+        if(service.deleta(name)){
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().body("Nao foi possivel deletar produto");

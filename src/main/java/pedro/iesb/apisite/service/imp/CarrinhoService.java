@@ -46,14 +46,21 @@ public class CarrinhoService implements CarrinhoServiceInterface {
     }
 
     @Override
-    public float valorTotal(){
-        return repository.valorCarrinho();
+    public String valorTotal(){
+
+        return Float.toString(repository.valorCarrinho());
     }
 
     @Override
-    public float valorDesconto(String cupom){
+    public String valorDesconto(String cupom){
 
-        return repository.valorCarrinhoCupom(cupom);
+        float valor = repository.valorCarrinhoCupom(cupom);
+
+        if(valor == -1){
+            return null;
+        }
+
+        return Float.toString(valor);
     }
 
     @Override

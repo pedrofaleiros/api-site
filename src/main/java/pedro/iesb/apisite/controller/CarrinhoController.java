@@ -47,25 +47,19 @@ public class CarrinhoController {
 
     @GetMapping("/carrinho/preco")
     public ResponseEntity<String> getPrecoTotal(){
-        String preco = Float.toString(service.valorTotal());
-        return ResponseEntity.ok().body("Preco Total: "+ preco);
+        return ResponseEntity.ok().body("Preco Total: "+ service.valorTotal());
     }
 
     @PostMapping("/carrinho/desconto/{cupom}")
-    public ResponseEntity<String> getPrecoTotal(@PathVariable("cupom") String cupom){
+    public ResponseEntity<String> getPrecoTotal(@PathVariable ("cupom") String cupom){
 
-        if(cupom == null){
-            return ResponseEntity.badRequest().body("Insira o CUPOM de desconto");
-        }
+        String valor = service.valorDesconto(cupom);
 
-        float valor = service.valorDesconto(cupom);
-
-        if(valor == -1){
+        if(valor == null){
             return ResponseEntity.badRequest().body("Cupom invalido");
         }
 
-        String preco = Float.toString(valor);
-        return ResponseEntity.ok().body("Preco Total: "+ preco);
+        return ResponseEntity.ok().body("Preco Total: " + valor);
     }
 
     @PostMapping("/carrinho/limpar")

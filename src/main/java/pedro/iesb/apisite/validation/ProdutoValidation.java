@@ -6,7 +6,7 @@ public class ProdutoValidation {
 
     public String verify(ProdutoDto prod){
 
-        if(prod.getName().equals("")){
+        if(prod.getName().equals("") || prod.getName().split(" ").length > 1){
             return "Nome invalido";
         }
 
