@@ -38,10 +38,12 @@ public class CompraController {
     @PostMapping("/compra/finalizar")
     public ResponseEntity<String> compra(){
 
-        if(service.finalizar()){
+        String retorno = service.finalizar();
+
+        if(retorno == null){
             return ResponseEntity.ok().build();
         }
 
-        return ResponseEntity.badRequest().body("nenhum usuario logado");
+        return ResponseEntity.badRequest().body(retorno);
     }
 }

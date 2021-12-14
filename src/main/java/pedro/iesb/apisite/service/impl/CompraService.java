@@ -25,16 +25,20 @@ public class CompraService implements CompraServiceInterface {
     }
 
     @Override
-    public boolean finalizar(){
+    public String finalizar(){
 
         LoginRepository login = LoginRepository.getInstancia();
 
-        if(login.getLogin() != null){
-            repository.finalizar();
-            return true;
+        if(repository.getDados() == null){
+            return "Preencha os dados do cartao";
         }
 
-        return false;
+        if(login.getLogin() != null){
+            repository.finalizar();
+            return null;
+        }
+
+        return "Nenhum usuario logado";
     }
 
     @Override

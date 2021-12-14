@@ -9,6 +9,6 @@ public interface CompraServiceInterface {
 
     CompraResponse getDados();
 
-    boolean finalizar();
+    String finalizar();
 
 }
