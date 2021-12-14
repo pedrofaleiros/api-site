@@ -12,6 +12,10 @@ public class ClienteValidation extends CartaoValidation {
 
     public String verify(ClienteDto cliente){
 
+        if(!validarCPF.validar(cliente.getCpf())){
+            return "CPF invalido";
+        }
+
         if(!verifyWithRegex(cliente.getEmail(), "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
             return "Email invalido";
@@ -23,10 +27,6 @@ public class ClienteValidation extends CartaoValidation {
 
         if(!verifyWithRegex(cliente.getPassword(), "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$")){
             return "Senha invalida";
-        }
-
-        if(!validarCPF.validar(cliente.getCpf())){
-            return "CPF invalido";
         }
 
         if(!verifyWithRegex(cliente.getTelefone().getTelefoneCelular(), "\\d{4,5}\\-\\d{4}")){
