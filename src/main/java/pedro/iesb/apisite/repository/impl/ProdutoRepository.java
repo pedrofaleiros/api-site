@@ -28,6 +28,8 @@ public class ProdutoRepository implements ProdutoRepositoryInterface {
         ProdutoEntity aux = getByName(name);
         prod.setId(aux.getId());
         int i = produtos.indexOf(aux);
+
+        prod.setSold(aux.getSold());
         produtos.set(i, prod);
     }
 

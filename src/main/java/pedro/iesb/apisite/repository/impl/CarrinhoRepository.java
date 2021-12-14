@@ -103,6 +103,7 @@ public class CarrinhoRepository implements CarrinhoRepositoryInterface {
 
         if(prodRepo.findByName(item.getNomeProduto())){
             if(prodRepo.validQtd(item.getNomeProduto(), item.getQtd())){
+
                 carrinho.set(indexByName(item.getNomeProduto()), item);
                 return 0;
             }
