@@ -10,6 +10,7 @@ import pedro.iesb.apisite.repository.*;
 public class CompraRepository implements CompraRepositoryInterface {
 
     private CompraEntity dadosCompra = null;
+
     private final ClienteRepositoryInterface clienteRepository;
     private final ProdutoRepositoryInterface produtoRepository;
     private final CarrinhoRepositoryInterface carrinhoRepository;

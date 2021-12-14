@@ -11,7 +11,7 @@ public interface ProdutoRepositoryInterface {
 
     List<ProdutoEntity> get();
 
-    boolean update(ProdutoEntity prod, String name);
+    void update(ProdutoEntity prod, String name);
 
     void delete(ProdutoEntity prod);
 

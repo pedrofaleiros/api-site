@@ -1,4 +1,4 @@
-package pedro.iesb.apisite.repository;
+package pedro.iesb.apisite.repository.impl;
 
 import org.springframework.stereotype.Repository;
 

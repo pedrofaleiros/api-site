@@ -6,7 +6,7 @@ import pedro.iesb.apisite.convert.ClienteConvert;
 import pedro.iesb.apisite.dto.PagamentoDto;
 import pedro.iesb.apisite.model.entities.CompraEntity;
 import pedro.iesb.apisite.repository.CompraRepositoryInterface;
-import pedro.iesb.apisite.repository.LoginRepository;
+import pedro.iesb.apisite.repository.impl.LoginRepository;
 import pedro.iesb.apisite.response.CompraResponse;
 import pedro.iesb.apisite.service.CompraServiceInterface;
 import pedro.iesb.apisite.validation.CartaoValidation;
@@ -27,18 +27,18 @@ public class CompraService implements CompraServiceInterface {
     @Override
     public String finalizar(){
 
-        LoginRepository login = LoginRepository.getInstancia();
-
         if(repository.getDados() == null){
             return "Preencha os dados do cartao";
         }
 
-        if(login.getLogin() != null){
-            repository.finalizar();
-            return null;
+        LoginRepository login = LoginRepository.getInstancia();
+
+        if(login.getLogin() == null){
+            return "Nenhum usuario logado";
         }
 
-        return "Nenhum usuario logado";
+        repository.finalizar();
+        return null;
     }
 
     @Override

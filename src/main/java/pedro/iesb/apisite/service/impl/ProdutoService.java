@@ -32,13 +32,14 @@ public class ProdutoService implements ProdutoServiceInterface {
             retorno = "Produto ja existe";
         }
 
-        if(retorno == null){
-            ProdutoEntity novo = convert.getEntity(prod);
-            novo.setId(UUID.randomUUID().toString());
-            repository.save(novo);
+        if(retorno != null){
+            return retorno;
         }
 
-        return retorno;
+        ProdutoEntity novo = convert.getEntity(prod);
+        novo.setId(UUID.randomUUID().toString());
+        repository.save(novo);
+        return null;
     }
 
     @Override
@@ -59,9 +60,11 @@ public class ProdutoService implements ProdutoServiceInterface {
             return retorno;
         }
 
-        if(!repository.update(convert.getEntity(prod), name)){
+        if(!repository.findByName(name)){
             return "Produto nao encontrado";
-        };
+        }
+
+        repository.update(convert.getEntity(prod), name);
 
         return null;
     }

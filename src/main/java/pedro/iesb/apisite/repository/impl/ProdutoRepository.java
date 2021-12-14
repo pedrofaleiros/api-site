@@ -23,24 +23,12 @@ public class ProdutoRepository implements ProdutoRepositoryInterface {
     }
 
     @Override
-    public boolean update(ProdutoEntity prod, String name){
+    public void update(ProdutoEntity prod, String name){
 
-        int i = 0;
-        boolean flag = false;
-        for(ProdutoEntity p: produtos){
-            if(p.getName().equals(name)){
-                flag = true;
-                prod.setId(p.getId());
-                break;
-            }
-            i++;
-        }
-
-        if(flag){
-            produtos.set(i, prod);
-            return true;
-        }
-        return false;
+        ProdutoEntity aux = getByName(name);
+        prod.setId(aux.getId());
+        int i = produtos.indexOf(aux);
+        produtos.set(i, prod);
     }
 
     @Override

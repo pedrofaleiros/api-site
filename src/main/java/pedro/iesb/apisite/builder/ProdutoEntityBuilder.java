@@ -4,6 +4,7 @@ import pedro.iesb.apisite.model.entities.ProdutoEntity;
 
 public class ProdutoEntityBuilder {
 
+    private String id;
     private String name;
     private String description;
     private float price;
@@ -35,8 +36,13 @@ public class ProdutoEntityBuilder {
         return this;
     }
 
+    public ProdutoEntityBuilder withId(String id) {
+        this.id = id;
+        return this;
+    }
+
     public ProdutoEntity build(){
-        return new ProdutoEntity( null, name, description, price, qtd, 0, section);
+        return new ProdutoEntity( id, name, description, price, qtd, 0, section);
     }
 
 }

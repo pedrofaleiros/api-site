@@ -5,7 +5,6 @@ import pedro.iesb.apisite.builder.ItemCarrinhoResponseBuilder;
 import pedro.iesb.apisite.model.Cupom;
 import pedro.iesb.apisite.model.ItemCarrinho;
 import pedro.iesb.apisite.repository.CarrinhoRepositoryInterface;
-import pedro.iesb.apisite.repository.CupomRepository;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,14 +84,12 @@ public class CarrinhoRepository implements CarrinhoRepositoryInterface {
 
         if(prodRepo.findByName(item.getNomeProduto())){
             if(prodRepo.validQtd(item.getNomeProduto(), item.getQtd() + qtdItemCarrinho(item.getNomeProduto()))){
-
                 if(notInCarrinho(item)){
                     carrinho.add(item);
                 }else{
                     item.setQtd(item.getQtd() + qtdItemCarrinho(item.getNomeProduto()));
                     carrinho.set(indexByName(item.getNomeProduto()), item);
                 }
-
                 return 0;
             }
             return 2;

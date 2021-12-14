@@ -14,6 +14,8 @@ public interface ClienteRepositoryInterface {
 
     ClienteEntity getById(String id);
 
+    ClienteEntity getByName(String name);
+
     boolean findByName(String name);
 
     boolean findByEmail(String email);

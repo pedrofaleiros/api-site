@@ -6,10 +6,6 @@ import pedro.iesb.apisite.dto.ProdutoDto;
 import pedro.iesb.apisite.service.ProdutoServiceInterface;
 import java.util.List;
 
-// service nao sabe onde e qual repositorio ele ta chamando, so chama
-// chamando a serviceInterface - liskov --> ele nao sabe qual service ta chamando,
-// o interesse da controller é se a serviceInterface tem os metodos que ta chamando
-
 @RestController
 public class ProdutoController {
 

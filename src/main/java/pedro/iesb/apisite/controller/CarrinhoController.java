@@ -71,10 +71,6 @@ public class CarrinhoController {
     @DeleteMapping("/carrinho/delete/{name}")
     public ResponseEntity<String> deletaProduto(@PathVariable ("name") String name){
 
-        if(name == null){
-            return ResponseEntity.badRequest().body("Insira o nome do pruduto");
-        }
-
         if(!service.deleteByName(name)){
             return ResponseEntity.badRequest().body("Produto nao encontrado no carrinho");
         }
