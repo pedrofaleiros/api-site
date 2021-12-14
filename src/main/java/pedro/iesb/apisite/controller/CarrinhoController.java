@@ -4,15 +4,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pedro.iesb.apisite.model.ItemCarrinho;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
-import pedro.iesb.apisite.service.imp.CarrinhoService;
+import pedro.iesb.apisite.service.CarrinhoServiceInterface;
 import java.util.List;
 
 @RestController
 public class CarrinhoController {
 
-    private final CarrinhoService service;
+    private final CarrinhoServiceInterface service;
 
-    public CarrinhoController(CarrinhoService service) {
+    public CarrinhoController(CarrinhoServiceInterface service) {
         this.service = service;
     }
 

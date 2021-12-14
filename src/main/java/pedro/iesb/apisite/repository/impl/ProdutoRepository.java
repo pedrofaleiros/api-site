@@ -1,24 +1,28 @@
-package pedro.iesb.apisite.repository;
+package pedro.iesb.apisite.repository.impl;
 
 import org.springframework.stereotype.Repository;
 import pedro.iesb.apisite.model.entities.ProdutoEntity;
+import pedro.iesb.apisite.repository.ProdutoRepositoryInterface;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProdutoRepository {
+public class ProdutoRepository implements ProdutoRepositoryInterface {
 
     private final List<ProdutoEntity> produtos = new ArrayList<>();
 
+    @Override
     public void save(ProdutoEntity prod){
         produtos.add(prod);
     }
 
+    @Override
     public List<ProdutoEntity> get(){
         return produtos;
     }
 
+    @Override
     public boolean update(ProdutoEntity prod, String name){
 
         int i = 0;
@@ -39,10 +43,12 @@ public class ProdutoRepository {
         return false;
     }
 
+    @Override
     public void delete(ProdutoEntity prod){
         produtos.remove(prod);
     }
 
+    @Override
     public float priceOf(String name){
 
         for(ProdutoEntity p: produtos){
@@ -54,6 +60,7 @@ public class ProdutoRepository {
         return 0;
     }
 
+    @Override
     public boolean validQtd(String name, int qtd){
         for(ProdutoEntity p: produtos){
             if(p.getName().equals(name)){
@@ -63,6 +70,7 @@ public class ProdutoRepository {
         return false;
     }
 
+    @Override
     public ProdutoEntity getByName(String name){
         for(ProdutoEntity p: produtos){
             if(p.getName().equals(name)){
@@ -72,6 +80,7 @@ public class ProdutoRepository {
         return null;
     }
 
+    @Override
     public boolean findByName(String name){
         for(ProdutoEntity p: produtos){
             if(p.getName().equals(name)){
@@ -81,6 +90,7 @@ public class ProdutoRepository {
         return false;
     }
 
+    @Override
     public void compra(List<ItemCarrinhoResponse> vendidos){
 
         for(ItemCarrinhoResponse i: vendidos){

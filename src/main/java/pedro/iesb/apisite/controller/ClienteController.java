@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pedro.iesb.apisite.dto.ClienteDto;
 import pedro.iesb.apisite.response.ClienteResponse;
-import pedro.iesb.apisite.service.imp.ClienteService;
+import pedro.iesb.apisite.service.ClienteServiceInterface;
 
 import java.util.List;
 
 @RestController
 public class ClienteController {
 
-    private final ClienteService service;
+    private final ClienteServiceInterface service;
 
-    public ClienteController(ClienteService service) {
+    public ClienteController(ClienteServiceInterface service) {
         this.service = service;
     }
 

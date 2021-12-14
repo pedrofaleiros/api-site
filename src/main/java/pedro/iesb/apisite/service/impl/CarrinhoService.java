@@ -1,18 +1,18 @@
-package pedro.iesb.apisite.service.imp;
+package pedro.iesb.apisite.service.impl;
 
 import org.springframework.stereotype.Service;
 import pedro.iesb.apisite.model.ItemCarrinho;
+import pedro.iesb.apisite.repository.CarrinhoRepositoryInterface;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
-import pedro.iesb.apisite.repository.CarrinhoRepository;
 import pedro.iesb.apisite.service.CarrinhoServiceInterface;
 import java.util.List;
 
 @Service
 public class CarrinhoService implements CarrinhoServiceInterface {
 
-    private final CarrinhoRepository repository;
+    private final CarrinhoRepositoryInterface repository;
 
-    public CarrinhoService(CarrinhoRepository repository) {
+    public CarrinhoService(CarrinhoRepositoryInterface repository) {
         this.repository = repository;
     }
 

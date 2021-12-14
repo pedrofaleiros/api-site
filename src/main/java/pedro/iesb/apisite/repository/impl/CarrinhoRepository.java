@@ -1,16 +1,17 @@
-package pedro.iesb.apisite.repository;
+package pedro.iesb.apisite.repository.impl;
 
 import org.springframework.stereotype.Repository;
 import pedro.iesb.apisite.builder.ItemCarrinhoResponseBuilder;
 import pedro.iesb.apisite.model.Cupom;
 import pedro.iesb.apisite.model.ItemCarrinho;
+import pedro.iesb.apisite.repository.CarrinhoRepositoryInterface;
+import pedro.iesb.apisite.repository.CupomRepository;
 import pedro.iesb.apisite.response.ItemCarrinhoResponse;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CarrinhoRepository {
+public class CarrinhoRepository implements CarrinhoRepositoryInterface {
 
     private final ProdutoRepository prodRepo;
     private final CupomRepository cupRepo;
@@ -23,6 +24,7 @@ public class CarrinhoRepository {
         this.cupRepo = cupRepo;
     }
 
+    @Override
     public List<ItemCarrinhoResponse> getCarrinho(){
 
         List<ItemCarrinhoResponse> ret = new ArrayList<>();
@@ -39,6 +41,7 @@ public class CarrinhoRepository {
         return ret;
     }
 
+    @Override
     public float valorCarrinho(){
         float price = valorTotalCarrinho();
 
@@ -49,7 +52,8 @@ public class CarrinhoRepository {
         return price;
     }
 
-    private float valorTotalCarrinho(){
+    @Override
+    public float valorTotalCarrinho(){
         float price = 0;
 
         for(ItemCarrinho i: carrinho){
@@ -59,6 +63,7 @@ public class CarrinhoRepository {
         return price;
     }
 
+    @Override
     public float valorCarrinhoCupom(String cupom){
 
         float desconto = 0;
@@ -75,6 +80,7 @@ public class CarrinhoRepository {
         return -1;
     }
 
+    @Override
     public int adicionaProduto(ItemCarrinho item){
 
         if(prodRepo.findByName(item.getNomeProduto())){
@@ -95,6 +101,7 @@ public class CarrinhoRepository {
         return 1;
     }
 
+    @Override
     public int atualizaProduto(ItemCarrinho item){
 
         if(prodRepo.findByName(item.getNomeProduto())){
@@ -108,6 +115,7 @@ public class CarrinhoRepository {
         return 0;
     }
 
+    @Override
     public boolean deleteByName(String name){
         for(ItemCarrinho i: carrinho){
             if(i.getNomeProduto().equals(name)){
@@ -118,24 +126,29 @@ public class CarrinhoRepository {
         return false;
     }
 
+    @Override
     public void limparCarrinho(){
         carrinho.clear();
     }
 
+    @Override
     public String getCupom(){
         return cupomAplicado.getCod();
     }
 
+    @Override
     public void apagaCupom(){
         this.cupomAplicado.setCod(null);
         this.cupomAplicado.setValor(0);
     }
 
-    private boolean isCupomAplicado(){
+    @Override
+    public boolean isCupomAplicado(){
         return !(cupomAplicado.getCod() == null);
     }
 
-    private int indexByName(String name){
+    @Override
+    public int indexByName(String name){
         for(ItemCarrinho i: carrinho){
             if(i.getNomeProduto().equals(name)){
                 return carrinho.indexOf(i);
@@ -144,7 +157,8 @@ public class CarrinhoRepository {
         return 0;
     }
 
-    private int qtdItemCarrinho(String name){
+    @Override
+    public int qtdItemCarrinho(String name){
         for(ItemCarrinho i: carrinho){
             if(i.getNomeProduto().equals(name)){
                 return i.getQtd();
@@ -153,7 +167,8 @@ public class CarrinhoRepository {
         return 0;
     }
 
-    private boolean notInCarrinho(ItemCarrinho item){
+    @Override
+    public boolean notInCarrinho(ItemCarrinho item){
         for(ItemCarrinho i: carrinho){
             if(i.getNomeProduto().equals(item.getNomeProduto())){
                 return false;

@@ -1,11 +1,11 @@
-package pedro.iesb.apisite.service.imp;
+package pedro.iesb.apisite.service.impl;
 
 import org.springframework.stereotype.Service;
 import pedro.iesb.apisite.builder.CompraResponseBuilder;
 import pedro.iesb.apisite.convert.ClienteConvert;
 import pedro.iesb.apisite.dto.PagamentoDto;
 import pedro.iesb.apisite.model.entities.CompraEntity;
-import pedro.iesb.apisite.repository.CompraRepository;
+import pedro.iesb.apisite.repository.CompraRepositoryInterface;
 import pedro.iesb.apisite.repository.LoginRepository;
 import pedro.iesb.apisite.response.CompraResponse;
 import pedro.iesb.apisite.service.CompraServiceInterface;
@@ -14,11 +14,11 @@ import pedro.iesb.apisite.validation.CartaoValidation;
 @Service
 public class CompraService implements CompraServiceInterface {
 
-    private final CompraRepository repository;
+    private final CompraRepositoryInterface repository;
     private final CartaoValidation validation;
     private final ClienteConvert convert;
 
-    public CompraService(CompraRepository repository) {
+    public CompraService(CompraRepositoryInterface repository) {
         this.repository = repository;
         this.validation = new CartaoValidation();
         this.convert = new ClienteConvert();

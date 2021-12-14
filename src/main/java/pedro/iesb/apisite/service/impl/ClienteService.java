@@ -1,10 +1,10 @@
-package pedro.iesb.apisite.service.imp;
+package pedro.iesb.apisite.service.impl;
 
 import org.springframework.stereotype.Service;
 import pedro.iesb.apisite.convert.ClienteConvert;
 import pedro.iesb.apisite.dto.ClienteDto;
 import pedro.iesb.apisite.model.entities.ClienteEntity;
-import pedro.iesb.apisite.repository.ClienteRepository;
+import pedro.iesb.apisite.repository.ClienteRepositoryInterface;
 import pedro.iesb.apisite.response.ClienteResponse;
 import pedro.iesb.apisite.service.ClienteServiceInterface;
 import pedro.iesb.apisite.validation.ClienteValidation;
@@ -15,11 +15,11 @@ import java.util.UUID;
 @Service
 public class ClienteService implements ClienteServiceInterface{
 
-    private final ClienteRepository repository;
+    private final ClienteRepositoryInterface repository;
     private final ClienteValidation validation;
     private final ClienteConvert convert;
 
-    public ClienteService(ClienteRepository repository){
+    public ClienteService(ClienteRepositoryInterface repository){
         this.repository = repository;
         this.validation = new ClienteValidation();
         this.convert = new ClienteConvert();
@@ -30,6 +30,10 @@ public class ClienteService implements ClienteServiceInterface{
 
         if(repository.findByName(cliente.getName())){
             return "Usuario ja existe";
+        }
+
+        if(repository.findByEmail(cliente.getEmail())){
+            return "Email ja existe";
         }
 
         String ret = validation.verify(cliente);

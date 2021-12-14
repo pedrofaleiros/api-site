@@ -3,15 +3,19 @@ package pedro.iesb.apisite.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pedro.iesb.apisite.dto.ProdutoDto;
-import pedro.iesb.apisite.service.imp.ProdutoService;
+import pedro.iesb.apisite.service.ProdutoServiceInterface;
 import java.util.List;
+
+// service nao sabe onde e qual repositorio ele ta chamando, so chama
+// chamando a serviceInterface - liskov --> ele nao sabe qual service ta chamando,
+// o interesse da controller é se a serviceInterface tem os metodos que ta chamando
 
 @RestController
 public class ProdutoController {
 
-    private final ProdutoService service;
+    private final ProdutoServiceInterface service;
 
-    public ProdutoController(ProdutoService service){
+    public ProdutoController(ProdutoServiceInterface service){
         this.service = service;
     }
 

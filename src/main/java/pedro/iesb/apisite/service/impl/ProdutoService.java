@@ -1,10 +1,10 @@
-package pedro.iesb.apisite.service.imp;
+package pedro.iesb.apisite.service.impl;
 
 import org.springframework.stereotype.Service;
 import pedro.iesb.apisite.convert.ProdutoConvert;
 import pedro.iesb.apisite.dto.ProdutoDto;
 import pedro.iesb.apisite.model.entities.ProdutoEntity;
-import pedro.iesb.apisite.repository.ProdutoRepository;
+import pedro.iesb.apisite.repository.ProdutoRepositoryInterface;
 import pedro.iesb.apisite.service.ProdutoServiceInterface;
 import pedro.iesb.apisite.validation.ProdutoValidation;
 import java.util.List;
@@ -13,11 +13,11 @@ import java.util.UUID;
 @Service
 public class ProdutoService implements ProdutoServiceInterface {
 
-    private final ProdutoRepository repository;
+    private final ProdutoRepositoryInterface repository;
     private final ProdutoValidation validation;
     private final ProdutoConvert convert;
 
-    public ProdutoService(ProdutoRepository repository){
+    public ProdutoService(ProdutoRepositoryInterface repository){
         this.repository = repository;
         this.validation = new ProdutoValidation();
         this.convert = new ProdutoConvert();

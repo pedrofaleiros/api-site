@@ -1,24 +1,20 @@
 package pedro.iesb.apisite.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pedro.iesb.apisite.dto.PagamentoDto;
-import pedro.iesb.apisite.model.entities.CompraEntity;
 import pedro.iesb.apisite.response.CompraResponse;
-import pedro.iesb.apisite.service.imp.CompraService;
-
-import java.util.List;
+import pedro.iesb.apisite.service.CompraServiceInterface;
 
 @RestController
 public class CompraController {
 
-    private final CompraService service;
+    private final CompraServiceInterface service;
 
-    public CompraController(CompraService service) {
+    public CompraController(CompraServiceInterface service) {
         this.service = service;
     }
 
