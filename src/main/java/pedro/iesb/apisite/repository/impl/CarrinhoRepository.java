@@ -101,16 +101,17 @@ public class CarrinhoRepository implements CarrinhoRepositoryInterface {
     @Override
     public int atualizaProduto(ItemCarrinho item){
 
-        if(prodRepo.findByName(item.getNomeProduto())){
-            if(prodRepo.validQtd(item.getNomeProduto(), item.getQtd())){
-
-                carrinho.set(indexByName(item.getNomeProduto()), item);
-                return 0;
+        for(ItemCarrinho i: carrinho){
+            if(i.getNomeProduto().equals(item.getNomeProduto())){
+                if(prodRepo.validQtd(item.getNomeProduto(), item.getQtd())){
+                    carrinho.set(indexByName(i.getNomeProduto()), item);
+                    return 0;
+                }
+                return 2;
             }
-            return 2;
         }
 
-        return 0;
+        return 1;
     }
 
     @Override
