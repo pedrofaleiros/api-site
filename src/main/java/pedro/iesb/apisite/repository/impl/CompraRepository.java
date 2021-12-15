@@ -49,5 +49,6 @@ public class CompraRepository implements CompraRepositoryInterface {
         produtoRepository.compra(carrinhoRepository.getCarrinho());
         carrinhoRepository.limparCarrinho();
         carrinhoRepository.apagaCupom();
+        dadosCompra = null;
     }
 }
